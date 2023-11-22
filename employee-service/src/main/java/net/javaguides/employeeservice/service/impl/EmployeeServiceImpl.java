@@ -6,6 +6,7 @@ import net.javaguides.employeeservice.dto.EmployeeDTO;
 import net.javaguides.employeeservice.dto.DepartmentDTO;
 import net.javaguides.employeeservice.entity.Employee;
 import net.javaguides.employeeservice.repository.EmployeeRepository;
+import net.javaguides.employeeservice.service.APIClient;
 import net.javaguides.employeeservice.service.EmployeeService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -18,7 +19,8 @@ public class EmployeeServiceImpl implements EmployeeService {
    private EmployeeRepository employeeRepository;
 
    /* private RestTemplate restTemplate;*/
-    private WebClient webClient;
+    /*private WebClient webClient;*/
+    private APIClient apiClient;
     @Override
     public EmployeeDTO saveEmployee(EmployeeDTO employeeDTO) {
         //convert departmentDTO to Department JPA
@@ -53,13 +55,13 @@ EmployeeDTO savedEmployeeDTO = new EmployeeDTO(
 
             DepartmentDTO departmentDTO = responseEntity.getBody();*/
 
-       DepartmentDTO departmentDTO = webClient.get()
+      /* DepartmentDTO departmentDTO = webClient.get()
                 .uri("http://localhost:8080/api/departments/" + employee.getDepartmentCode())
                 .retrieve()
                 .bodyToMono(DepartmentDTO.class)
-                .block();
+                .block();*/
 
-
+       DepartmentDTO departmentDTO = apiClient.getDepartment(employee.getDepartmentCode());
         EmployeeDTO employeeDTO = new EmployeeDTO(
                 employee.getId(),
                 employee.getFirstName(),
