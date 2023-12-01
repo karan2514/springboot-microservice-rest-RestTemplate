@@ -18,9 +18,10 @@ public class Employee {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String firstName;
-    private String lastname;
+    private String lastName;
     @Column(nullable = false, unique = true)
     private String email;
 
     private String departmentCode;
+    private String organizationCode;
 }

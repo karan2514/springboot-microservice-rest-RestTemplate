@@ -31,12 +31,8 @@ DepartmentDTO savedDepartmentDTO = modelMapper.map(department,DepartmentDTO.clas
     public DepartmentDTO getDepartmentByCode(String departmentCode) {
         Department department = departmentRepository.findByDepartmentCode(departmentCode);
 
-        DepartmentDTO departmentDTO = new DepartmentDTO(
-                department.getId(),
-                department.getDepartmentName(),
-                department.getDepartmentDescription(),
-                department.getDepartmentCode()
-        );
+        DepartmentDTO departmentDTO = modelMapper.map(department,DepartmentDTO.class);
+
         return departmentDTO;
     }
 }

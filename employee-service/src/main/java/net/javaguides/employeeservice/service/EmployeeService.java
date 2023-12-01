@@ -8,4 +8,5 @@ public interface EmployeeService {
     EmployeeDTO saveEmployee(EmployeeDTO departmentDTO);
 
     APIResponseDTO getEmployeeById(Long id);
+
 }
